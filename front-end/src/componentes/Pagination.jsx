@@ -12,6 +12,7 @@ export default function Pagination({
   }
   return (
     <nav>
+      {console.log(productsPerPage, totalProducts, paginate)}
       <div className="flex justify-center mb-4">
         <ul className="pagination">
           {pageNumbers.map((number) => (

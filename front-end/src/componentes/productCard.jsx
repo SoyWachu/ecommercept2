@@ -8,6 +8,7 @@ export default function Product(props) {
 
   const sorted = useMemo(() => {
     const arr = [...data];
+
     if (sort.by) {
       return arr?.sort((a, b) => {
         if (sort.order === "asc") {
@@ -16,9 +17,14 @@ export default function Product(props) {
         return a[sort.by] < b[sort.by] ? 1 : -1;
       });
     }
-
     return arr;
   }, [sort, data]);
+
+  const arr2 = [...data];
+
+  const filteredArr = arr2.filter((p) => {
+    return p.condition === "used";
+  });
 
   const sortAsc = (e) => {
     e.preventDefault();
@@ -45,8 +51,9 @@ export default function Product(props) {
             />
             <h1 className="text-lg font-bold mt-4 ml-4">{p.title}</h1>
             <div className="font-semibold mt-4 ml-4 mb-4">
-              <div>Precio: {p.price}</div>
-              <div>Moneda: {p.currency_id}</div>
+              <div>
+                Precio: {p.price} {p.currency_id}
+              </div>
               <div>Condicion: {p.condition}</div>
               <div>Stock: {p.available_quantity}</div>
             </div>
